@@ -73,7 +73,7 @@ function App() {
     <div className=" flex items-center justify-center gap-8 min-h-screen">
       <div className="space-y-2 flex items-center flex-col"> 
         <div className="text-center font-bold text-lg">
-          {isWinner && "Winner! - Refresh to try again"}
+          {isWinner && "You won! - Refresh to try again"}
           {isLoser && "Nice Try! - Refresh to try again"}
         </div>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
