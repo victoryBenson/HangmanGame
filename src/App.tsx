@@ -75,7 +75,7 @@ function App() {
       <div className="space-y-2 flex items-center flex-col p-3">  
         <div className="font-bold text-xl text-center">{!isWinner && !isLoser && "Hangman Game!"}</div> 
         <div className="text-center text-lg py-2">
-          {isWinner && <><strong className="text-green-500 text-3xl">You Won! </strong> <p onClick={()=> location.reload()} className="font-base bg-blue-400 text-white p-1 rounded my-2">Try again</p></>}
+          {isWinner && <><strong className="text-green-500 text-3xl">You Won! </strong> <p onClick={()=> location.reload()} className="font-base bg-blue-400 text-white p-1 rounded my-2">Play again</p></>}
           {isLoser && <><strong className="text-red-500 text-3xl">Failed</strong> <p onClick={()=> location.reload()} className="font-base bg-blue-400 text-white p-1 rounded my-2">Try again</p></>}
         </div>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
