@@ -52,6 +52,7 @@ function App() {
   }, [guessedLetters])
 
 
+  //click enter button to refresh the game!
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const key = e.key
@@ -71,10 +72,11 @@ function App() {
 
   return (
     <div className=" flex items-center justify-center gap-8 min-h-screen">
-      <div className="space-y-2 flex items-center flex-col"> 
+      <div className="space-y-2 flex items-center flex-col">
+        <div className="font-bold text-2xl">Guess the word!</div> 
         <div className="text-center font-bold text-lg">
-          {isWinner && "You won! - Refresh to try again"}
-          {isLoser && "Nice Try! - Refresh to try again"}
+          {isWinner && <span><strong className="text-red-500">You Won! </strong>- <span className="font-base">Refresh to try again</span></span>}
+          {isLoser && <span><strong className="text-red-500">Nice Try! </strong>- <span className="font-base">Refresh to try again</span></span>}
         </div>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
         <HangmanWord reveal={isLoser}  guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
@@ -87,6 +89,9 @@ function App() {
               inactiveLetters = {incorrectLetters}
               addGuessedLetter = {addGuessedLetter}
             />
+        </div>
+        <div>
+          <strong>Hint:</strong> Find the word the will match the empty space above
         </div>
       </div>
     </div>
