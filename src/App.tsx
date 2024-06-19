@@ -70,7 +70,8 @@ function App() {
   }, [])
 
   return (
-    <div className=" flex flex-col items-center justify-center gap-8 m-0 min-h-screen">
+    <div className=" flex items-center justify-center gap-8 min-h-screen">
+      <div className="space-y-2 flex items-center flex-col"> 
         <div className="text-center">
           {isWinner && "Winner! - Refresh to try again"}
           {isLoser && "Nice Try - Refresh to try again"}
@@ -87,6 +88,7 @@ function App() {
               addGuessedLetter = {addGuessedLetter}
             />
         </div>
+      </div>
     </div>
   )
 }
