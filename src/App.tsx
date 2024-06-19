@@ -73,10 +73,10 @@ function App() {
   return (
     <div className=" flex items-center justify-center gap-8 min-h-screen">
       <div className="space-y-2 flex items-center flex-col p-3">
-        <div className="font-bold text-2xl">Guess the word!</div> 
-        <div className="text-center font-bold text-lg py-2">
-          {isWinner && <span><strong className="text-green-500">You Won! </strong>- <button onClick={()=> location.reload()} className="font-base bg-green-400 text-white p-1 rounded">Try again</button></span>}
-          {isLoser && <span><strong className="text-red-500">Nice Try! </strong>- <button onClick={()=> location.reload()} className="font-base bg-green-400 text-white p-1 rounded">Try again</button></span>}
+        <div className="font-bold text-xl text-center">{!isWinner && !isLoser && "Hangman Game!"}</div> 
+        <div className="text-center text-lg py-2">
+          {isWinner && <><strong className="text-green-500 text-3xl">You Won! </strong> <p onClick={()=> location.reload()} className="font-base bg-blue-400 text-white p-1 rounded my-2">Try again</p></>}
+          {isLoser && <><strong className="text-red-500 text-3xl">Nice Try! </strong> <p onClick={()=> location.reload()} className="font-base bg-blue-400 text-white p-1 rounded my-2">Try again</p></>}
         </div>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
         <HangmanWord reveal={isLoser}  guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
