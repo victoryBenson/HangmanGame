@@ -91,7 +91,7 @@ function App() {
             />
         </div>
         <div>
-          <strong>Hint:</strong> Find the word the will match the empty space above
+          <strong>Hint:</strong> Find the word that will match the empty space above
         </div>
       </div>
     </div>
