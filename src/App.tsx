@@ -4,11 +4,12 @@ import HangmanDrawing from "./components/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
 
+function getWord() {
+  return words[Math.floor(Math.random() * words.length)]
+}
 
 function App() {
-  const [wordToGuess, setWordToGuess] = useState(() => {
-    return words[Math.floor(Math.random() * words.length)] //pick words @ random
-  })
+  const [wordToGuess, setWordToGuess] = useState(getWord)
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
@@ -16,20 +17,23 @@ function App() {
     letter => !wordToGuess.includes(letter)
   );
 
+  const isLoser = incorrectLetters.length >= 6
+  const isWinner = wordToGuess
+    .split("")
+    .every(letter => guessedLetters.includes(letter))
 
   const addGuessedLetter = useCallback(
     (letter: string) => {
 
-        if (guessedLetters.includes(letter)) return
+        if (guessedLetters.includes(letter) || isLoser || isWinner) return
     
         setGuessedLetters(currentLetters  => [...currentLetters, letter])
         
       },
-      [guessedLetters]
+      [guessedLetters, isLoser, isWinner]
   )
   
    
-  
   //check if you clicked any button
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -47,15 +51,41 @@ function App() {
     }
   }, [guessedLetters])
 
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const key = e.key
+      if (key !== "Enter") return
+
+      e.preventDefault()
+      setGuessedLetters([])
+      setWordToGuess(getWord())
+    }
+
+    document.addEventListener("keypress", handler)
+
+    return () => {
+      document.removeEventListener("keypress", handler)
+    }
+  }, [])
+
   return (
     <div className=" flex flex-col items-center justify-center gap-8 m-0 min-h-screen">
         <div className="text-center">
-            Lose Win
+          {isWinner && "Winner! - Refresh to try again"}
+          {isLoser && "Nice Try - Refresh to try again"}
         </div>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
-        <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
+        <HangmanWord reveal={isLoser}  guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
         <div className="self-stretch">
-            <Keyboard/>
+            <Keyboard 
+              disabled = {isWinner || isLoser}
+              activeLetters = {guessedLetters.filter(letter => (
+                wordToGuess.includes(letter)
+              ))}
+              inactiveLetters = {incorrectLetters}
+              addGuessedLetter = {addGuessedLetter}
+            />
         </div>
     </div>
   )
