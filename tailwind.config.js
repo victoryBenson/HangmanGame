@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily : {
+      inter: ["Inter", "sans-serif"],
+      rubik: ["Rubik Maze", "system-ui"]
+    },
+    backgroundImage:{
+      "image": "url('')"
+    }
   },
   plugins: [],
 }
