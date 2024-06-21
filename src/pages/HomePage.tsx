@@ -19,7 +19,7 @@ const HomePage = () => {
         <p className='text-2xl'>Guess the word before your man gets hung</p>
         <div className='space-x-2 p-4 flex items-center justify-center'>
           <button className='bg-green-600 p-3 rounded font-bold flex items-center gap-2'>Start Game<FaRegCirclePlay /></button>
-          <button className='bg-white text-stone-800 p-3 rounded font-bold flex items-center gap-2'>Settings <IoMdSettings /></button>
+          <button className='bg-stone-100 text-stone-800 p-3 rounded font-bold flex items-center gap-2'>Quick Setup <IoMdSettings /></button>
         </div>
       </div>
     </div>
