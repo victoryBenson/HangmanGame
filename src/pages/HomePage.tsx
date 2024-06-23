@@ -10,7 +10,7 @@ import  GameSettingsModal, { GameSettingsData } from "../components/GameSettings
 const HomePage = () => {
   const [isGameSettingsOpen, setGameSettingsOpen] = useState<boolean>(false);
   const [gameFormData, setGameFormData] = useState<GameSettingsData | null>(null);
-  
+  console.log(gameFormData)
   //open and close modal
   const handleGameSettingsModal = () => {
     setGameSettingsOpen(!isGameSettingsOpen);
