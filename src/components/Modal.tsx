@@ -12,6 +12,10 @@ const Modal: React.FC<ModalProps> = ({isOpen, hasCloseBtn, onClose, children}) =
     const modalRef = useRef<HTMLDialogElement | null>(null);
     const [isModalOpen, setModalOpen] = useState(isOpen);
 
+    useEffect(() => {
+        setModalOpen(isOpen);
+    }, [isOpen]);
+
 
     //check the state of the modal either its open or close
     useEffect(() => {
@@ -41,9 +45,9 @@ const Modal: React.FC<ModalProps> = ({isOpen, hasCloseBtn, onClose, children}) =
     }
 
 return (
-    <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal">
+    <dialog ref={modalRef} onKeyDown={handleKeyDown} className="p-8 rounded-xl shadow-lg border-0 max-w-[20rem] relative">
         {hasCloseBtn && (
-            <button className="modal-close-btn" onClick={handleCloseModal}>Close</button>
+            <button className="modal-close-btn font-semibold text-stone-500 underline decoration-2 decoration-green-600 absolute top-0 right-2 text-sm p-2" onClick={handleCloseModal}>Close</button>
         )}
         {children}
     </dialog>

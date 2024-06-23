@@ -1,26 +1,22 @@
-
 import image2 from "../assets/images/unnamed.webp"
 import image3 from "../assets/images/hangman300200.webp"
 import { FaRegCirclePlay } from 'react-icons/fa6';
 import { IoMdSettings } from 'react-icons/io';
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import  GameSettingsModal, { gameSettingsData } from "../components/GameSettingsModal";
+import  GameSettingsModal, { GameSettingsData } from "../components/GameSettingsModal";
 
 
 const HomePage = () => {
   const [isGameSettingsOpen, setGameSettingsOpen] = useState<boolean>(false);
-  const [gameFormData, setGameFormData] = useState<gameSettingsData | null>(null);
+  const [gameFormData, setGameFormData] = useState<GameSettingsData | null>(null);
   
+  //open and close modal
   const handleGameSettingsModal = () => {
     setGameSettingsOpen(!isGameSettingsOpen);
-    // console.log('Hello')
-    if(isGameSettingsOpen == true){
-      console.log("hello_world")
-    }
   };
 
-  const handleFormSubmit = (data: gameSettingsData): void => {
+  const handleFormSubmit = (data: GameSettingsData): void => {
     setGameFormData(data);
     handleGameSettingsModal();
   };
@@ -38,16 +34,15 @@ const HomePage = () => {
       <div className='text-center'>
         <p className='text-2xl'>Guess the word before your man gets hung</p>
         <div className='space-x-2 p-4 flex items-center justify-center'>
+          {/* start game */}
           <Link to={`/startgame`} className='p-3 rounded items-center gap-2 flex flex-col'><FaRegCirclePlay size={30} className="text-green-500"/>Start Game</Link>
+          
+          {/* settings btn */}
           <div>
             <div>
               <button onClick={handleGameSettingsModal} className=' p-3 rounded flex flex-col items-center gap-2'><IoMdSettings size={30} className="text-stone-300"/>Quick Setup </button>
             </div>
-            {gameFormData && gameFormData.username && (
-              <div className="msg-box z-[999]">
-                <b>{gameFormData.username}</b> requested a <b>{gameFormData.category}</b> newsletter.
-              </div>
-            )}
+
             <GameSettingsModal
                 isOpen={isGameSettingsOpen}
                 onSubmit={handleFormSubmit}
