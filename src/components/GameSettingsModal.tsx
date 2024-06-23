@@ -69,7 +69,7 @@ const GameSettingsModal: React.FC<GameSettingsProps> = ({isOpen, onSubmit, onClo
                 />
             </div>
             <div className="w-[100%] flex flex-col">
-                <label htmlFor="category" className="font-semibold">Category</label>
+                <label htmlFor="category" className="font-semibold">Choose Category</label>
                 <select
                 id="category"
                 name="category"
