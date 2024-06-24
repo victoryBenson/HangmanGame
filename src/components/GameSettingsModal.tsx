@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
         onClose: () => void;
     }
 
-const GameSettingsModal: React.FC<GameSettingsProps> = ({isOpen, onSubmit, onClose}) => {   
+const GameSettingsModal= ({isOpen, onSubmit, onClose}:GameSettingsProps) => {   
     const focusInputRef = useRef<HTMLInputElement | null>(null);
     const [formState, setFormState] = useState<GameSettingsData>(initialGameSettingsData);
     const navigate = useNavigate()
